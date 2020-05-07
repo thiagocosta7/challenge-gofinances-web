@@ -1,14 +1,13 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface CardProps {
   total?: boolean;
 }
 
-export const Container = styled.div`
+const containerStyle = css`
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 40px 20px;
 `;
 
 export const Title = styled.h1`
@@ -16,11 +15,17 @@ export const Title = styled.h1`
   color: #3a3a3a;
 `;
 
+export const CardWrapper = styled.div`
+  width: 100%;
+  background: linear-gradient(180deg, #5636d3 50%, transparent 50%);
+`;
+
 export const CardContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 32px;
-  margin-top: -150px;
+  padding: 40px 20px;
+  ${containerStyle};
 `;
 
 export const Card = styled.div`
@@ -28,6 +33,8 @@ export const Card = styled.div`
   padding: 22px 32px;
   border-radius: 5px;
   color: ${({ total }: CardProps): string => (total ? '#fff' : '#363F5F')};
+
+  transition: 0.2s transform;
 
   header {
     display: flex;
@@ -45,10 +52,16 @@ export const Card = styled.div`
     font-weight: normal;
     line-height: 54px;
   }
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const TableContainer = styled.section`
   margin-top: 64px;
+  padding: 40px 20px;
+  ${containerStyle};
 
   table {
     width: 100%;
@@ -63,10 +76,19 @@ export const TableContainer = styled.section`
       line-height: 24px;
     }
 
+    tbody {
+      tr {
+        background: #ffffff;
+        transition: 0.2s background-color;
+        &:hover {
+          background: #f7f7f7;
+        }
+      }
+    }
+
     td {
       padding: 20px 32px;
       border: 0;
-      background: #fff;
       font-size: 16px;
       font-weight: normal;
       color: #969cb3;
